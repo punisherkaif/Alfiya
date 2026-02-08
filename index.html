@@ -259,6 +259,144 @@
             box-shadow: 0 12px 35px rgba(212, 163, 115, 0.5);
         }
         .valentine-widget-btn.hidden { display: none; }
+        .valentine-widget-btn.widget-locked { 
+            display: none !important; 
+        }
+
+        /* ========== Relationship Timeline Counters ========== */
+        .relationship-timers {
+            margin-top: 2.5rem;
+            padding: 0;
+        }
+        .relationship-timers h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .timers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .timer-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 16px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 
+                0 6px 24px rgba(90, 62, 54, 0.12),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .timer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(90, 62, 54, 0.18);
+        }
+        .timer-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .timer-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .timer-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .timer-unit {
+            background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary));
+            border-radius: 10px;
+            padding: 0.4rem 0.5rem;
+            min-width: 40px;
+            box-shadow: 
+                0 3px 8px rgba(90, 62, 54, 0.1),
+                inset 0 -2px 0 rgba(0,0,0,0.05);
+        }
+        .timer-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: block;
+            line-height: 1.2;
+        }
+        .timer-label {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+        /* Mobile: Full width outside grid flow */
+        @media (max-width: 900px) {
+            .relationship-timers {
+                margin-top: 3rem;
+                padding: 0 1rem;
+            }
+            .relationship-timers h2 {
+                font-size: 2.5rem;
+            }
+            .timers-container {
+                gap: 1.5rem;
+            }
+            .timer-card {
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+            .timer-icon {
+                font-size: 2.2rem;
+            }
+            .timer-title {
+                font-size: 1.5rem;
+            }
+            .timer-unit {
+                min-width: 45px;
+                padding: 0.5rem 0.6rem;
+            }
+            .timer-value {
+                font-size: 1.3rem;
+            }
+            .timer-label {
+                font-size: 0.6rem;
+            }
+        }
 
         .valentine-panel {
             position: fixed;
@@ -560,6 +698,57 @@
                     Har Pal Har Lamha Har Waqt ....
                     Tu Chahiye">✉</div>
                 </div>
+
+                <!-- Relationship Timeline Counters -->
+                <div class="relationship-timers">
+                    <h2>Our Timeline 💫</h2>
+                    <div class="timers-container">
+                        <!-- Timer 1: Since We Started Dating -->
+                        <div class="timer-card">
+                            <span class="timer-icon">💑</span>
+                            <div class="timer-title">Since We Started Dating</div>
+                            <div class="timer-subtitle">Every moment counts...</div>
+                            <div class="timer-display" id="datingTimer">
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Years</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Months</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Days</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Hours</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Mins</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Secs</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Timer 2: Since We First Met -->
+                        <div class="timer-card">
+                            <span class="timer-icon">✨</span>
+                            <div class="timer-title">Since We Last Met</div>
+                            <div class="timer-subtitle">When i got to see you again ...</div>
+                            <div class="timer-display" id="meetTimer">
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Years</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Months</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Days</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Hours</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Mins</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Secs</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Timer 3: Since We Parted Ways -->
+                        <div class="timer-card">
+                            <span class="timer-icon">🥀</span>
+                            <div class="timer-title">Since We Parted Ways</div>
+                            <div class="timer-subtitle">Distance in time, not in heart...</div>
+                            <div class="timer-display" id="breakupTimer">
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Years</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Months</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Days</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Hours</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Mins</span></div>
+                                <div class="timer-unit"><span class="timer-value">0</span><span class="timer-label">Secs</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -572,8 +761,8 @@
         </div>
     </div>
 
-    <!-- Valentine Widget -->
-    <button class="valentine-widget-btn" id="valentineBtn" title="A little question for you...">💌</button>
+    <!-- Valentine Widget (Hidden until reveal) -->
+    <button class="valentine-widget-btn widget-locked" id="valentineBtn" title="A little question for you...">💌</button>
     
     <div class="valentine-panel" id="valentinePanel">
         <div class="valentine-panel-header">
@@ -596,6 +785,70 @@
         const mainContent = document.getElementById('main-content');
         const countdownEl = document.getElementById('countdown');
 
+        // ========== Relationship Timeline Timers ==========
+        // IMPORTANT: Update these dates to your actual dates!
+        const relationshipDates = {
+            startedDating: new Date("2017-05-12T00:00:00"),  // When you started dating
+            firstMet: new Date("2024-10-09T00:00:00"),       // When you last met
+            brokeUp: new Date("2023-03-23T00:00:00")          // When you broke up
+        };
+
+        function calculateElapsedTime(startDate) {
+            const now = new Date();
+            let diff = now - startDate;
+            
+            if (diff < 0) diff = 0;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            diff -= years * (1000 * 60 * 60 * 24 * 365.25);
+
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+            diff -= months * (1000 * 60 * 60 * 24 * 30.44);
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * (1000 * 60 * 60 * 24);
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * (1000 * 60);
+
+            const seconds = Math.floor(diff / 1000);
+
+            return { years, months, days, hours, minutes, seconds };
+        }
+
+        function updateTimerDisplay(timerId, elapsed) {
+            const timerEl = document.getElementById(timerId);
+            if (!timerEl) return;
+
+            const units = timerEl.querySelectorAll('.timer-unit .timer-value');
+            if (units.length >= 6) {
+                units[0].textContent = elapsed.years;
+                units[1].textContent = elapsed.months;
+                units[2].textContent = elapsed.days;
+                units[3].textContent = elapsed.hours;
+                units[4].textContent = elapsed.minutes;
+                units[5].textContent = elapsed.seconds;
+            }
+        }
+
+        function updateRelationshipTimers() {
+            const datingElapsed = calculateElapsedTime(relationshipDates.startedDating);
+            const meetElapsed = calculateElapsedTime(relationshipDates.firstMet);
+            const breakupElapsed = calculateElapsedTime(relationshipDates.brokeUp);
+
+            updateTimerDisplay('datingTimer', datingElapsed);
+            updateTimerDisplay('meetTimer', meetElapsed);
+            updateTimerDisplay('breakupTimer', breakupElapsed);
+        }
+
+        function startRelationshipTimers() {
+            updateRelationshipTimers();
+            setInterval(updateRelationshipTimers, 1000);
+        }
+
         function updateCountdown() {
             const now = new Date();
             const diff = revealDate - now;
@@ -604,6 +857,13 @@
                 lockScreen.classList.add('hidden');
                 mainContent.classList.add('revealed');
                 document.body.style.overflow = 'auto';
+                // Reveal Valentine widget after timer hits zero
+                const valentineWidget = document.getElementById('valentineBtn');
+                if (valentineWidget) {
+                    valentineWidget.classList.remove('widget-locked');
+                }
+                // Start relationship timers
+                startRelationshipTimers();
                 return;
             }
 
@@ -617,7 +877,7 @@
         }
         updateCountdown();
 
-        // Image strip - no carousel auto-play needed
+
 
         // Envelope modals
         document.querySelectorAll('.envelope').forEach(env => {
@@ -884,5 +1144,4 @@
         })();
     </script>
 </body>
-
 </html>
